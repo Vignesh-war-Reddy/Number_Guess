@@ -1,0 +1,42 @@
+Rules of the game
+Two players play the game against each other; let’s assume Player 1 and Player 2.
+
+Player 1 plays first by setting a multi-digit number.
+Player 2 now tries his first attempt at guessing the number.
+If Player 2 succeeds in his first attempt (despite odds which are highly unlikely) he wins the game and is crowned Mastermind! If not, then Player 1 hints by revealing which digits or numbers Player 2 got correct.
+The game continues till Player 2 eventually is able to guess the number entirely.
+Now, Player 2 gets to set the number and Player 1 plays the part of guessing the number.
+If Player 1 is able to guess the number within a lesser number of tries than Player 2 took, then Player 1 wins the game and is crowned Mastermind.
+If not, then Player 2 wins the game.
+The real game, however, has proved aesthetics since the numbers are represented by color-coded buttons.
+
+import random
+
+num = random.randrange(1000, 10000)
+n = int(input("Guess the 4-digit number:"))
+
+if n == num:
+    print("Great! You guessed the number in just 1 try! You're a Mastermind!")
+else:
+    ctr = 0
+
+    while n != num:
+        ctr += 1
+        count = 0
+
+        n_str = str(n)
+        num_str = str(num)
+
+        for i in range(4):
+            if n_str[i] == num_str[i]:
+                count += 1
+
+        if count > 0:
+            print(f"Not quite the number. But you got {count} digit(s) correct!")
+        else:
+            print("None of the numbers in your input match.")
+
+        n = int(input("Enter your next guess: "))
+
+    ctr += 1
+    print(f"You've become a Mastermind! It took you {ctr} tries.")
